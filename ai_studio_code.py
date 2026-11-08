@@ -431,7 +431,7 @@ def generate_empowered_daily_insight(gemini_client, user_nick, user_p, lang_code
     Idioma: {lang_name}.
     """
     res = gemini_client.models.generate_content(
-        model="gemini-1.5-flash",
+        model="gemini-1.5-pro",
         contents=prompt,
         config=types.GenerateContentConfig(response_mime_type="application/json")
     )
@@ -476,7 +476,7 @@ def find_db_affinities(gemini_client, current_user_nick, current_user_p, other_p
     }}
     """
     res = gemini_client.models.generate_content(
-        model="gemini-1.5-flash",
+        model="gemini-1.5-fash",
         contents=prompt,
         config=types.GenerateContentConfig(response_mime_type="application/json")
     )
@@ -509,7 +509,7 @@ def search_web_opportunities(gemini_client, user_nick, user_p, lang_code, catego
         system_instruction="Eres un asesor de élite que investiga oportunidades web contrastadas respetando la soberanía del usuario."
     )
     res = gemini_client.models.generate_content(
-        model="gemini-1.5-flash",
+        model="gemini-1.5-pro",
         contents=prompt,
         config=config
     )
@@ -674,7 +674,7 @@ if not st.session_state.auth_user:
                 else:
                     with st.spinner("Gemini auditando solicitud con tono perspicaz..."):
                         vetting = f"Evalúa la intención: '{r_intent}'. Responde JSON con 'aprobado': true/false."
-                        res = client.models.generate_content(model="gemini-1.5-flash", contents=vetting, config=types.GenerateContentConfig(response_mime_type="application/json"))
+                        res = client.models.generate_content(model="gemini-1.5-pro", contents=vetting, config=types.GenerateContentConfig(response_mime_type="application/json"))
                         v = json.loads(res.text)
                         if v.get("aprobado", True):
                             now_s = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -955,7 +955,7 @@ with tab_chat_ia:
             """
             
             resp = client.models.generate_content(
-                model="gemini-1.5-flash", 
+                model="gemini-1.5-pro", 
                 contents=query_to_process, 
                 config=types.GenerateContentConfig(system_instruction=consejero_master_system_prompt)
             )
@@ -1006,7 +1006,7 @@ with tab_report:
     if st.button("⚡ Compilar Reporte Completo desde SQLite", type="primary"):
         with st.spinner("Compilando auditoría formal directamente con Gemini..."):
             rep_prompt = f"Genera un reporte 360° en Markdown analizando con profundidad, sabiduría y apoyo el perfil de {st.session_state.auth_user}: {json.dumps(current_profile, ensure_ascii=False)}."
-            res = client.models.generate_content(model="gemini-1.5-flash", contents=rep_prompt)
+            res = client.models.generate_content(model="gemini-1.5-pro", contents=rep_prompt)
             st.download_button("📥 Descargar Reporte (.md)", data=res.text, file_name=f"Reporte_{st.session_state.auth_user}.md", mime="text/markdown")
             st.markdown(f'<div class="nexus-card">{res.text}</div>', unsafe_allow_html=True)
 
