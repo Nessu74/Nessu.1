@@ -431,7 +431,7 @@ def generate_empowered_daily_insight(gemini_client, user_nick, user_p, lang_code
     Idioma: {lang_name}.
     """
     res = gemini_client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-2.0-flash",
         contents=prompt,
         config=types.GenerateContentConfig(response_mime_type="application/json")
     )
