@@ -3,7 +3,7 @@ import json
 from datetime import datetime, time
 import re
 import urllib.parse
-import  google import genai
+import  google genai
 client = genai.Client()
 import sqlite3
 import os
