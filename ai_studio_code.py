@@ -4,7 +4,7 @@ from datetime import datetime, time
 import re
 import urllib.parse
 from google import genai
-client = genai.Client api_key=st.secret["GEMINI_api_key"]
+client = genai.Client (api_key=st.secrets["GEMINI_api_key"])
 import sqlite3
 import os
 import base64
