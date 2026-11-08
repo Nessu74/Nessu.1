@@ -305,7 +305,7 @@ st.markdown("""
     }
     .nexus-logo-header {
         width: 46px; height: 46px; border-radius: 50%; object-fit: cover;
-        border: 3.8 Flash solid rgba(6, 182, 212, 0.6);
+        border: 3.5-flash-lite solid rgba(6, 182, 212, 0.6);
         box-shadow: 0 0 12px rgba(6, 182, 212, 0.35);
         vertical-align: middle; margin-right: 12px;
     }
@@ -431,7 +431,7 @@ def generate_empowered_daily_insight(gemini_client, user_nick, user_p, lang_code
     Idioma: {lang_name}.
     """
     res = gemini_client.models.generate_content(
-        model="gemini-3.8 Flash",
+        model="gemini-3.5-flash-lite",
         contents=prompt,
         config=types.GenerateContentConfig(response_mime_type="application/json")
     )
@@ -476,7 +476,7 @@ def find_db_affinities(gemini_client, current_user_nick, current_user_p, other_p
     }}
     """
     res = gemini_client.models.generate_content(
-        model="gemini-3.8 Flash",
+        model="gemini-3.5-flash-lite",
         contents=prompt,
         config=types.GenerateContentConfig(response_mime_type="application/json")
     )
@@ -509,7 +509,7 @@ def search_web_opportunities(gemini_client, user_nick, user_p, lang_code, catego
         system_instruction="Eres un asesor de élite que investiga oportunidades web contrastadas respetando la soberanía del usuario."
     )
     res = gemini_client.models.generate_content(
-        model="gemini-3.8 Flash",
+        model="gemini-3.5-flash-lite",
         contents=prompt,
         config=config
     )
@@ -674,7 +674,7 @@ if not st.session_state.auth_user:
                 else:
                     with st.spinner("Gemini auditando solicitud con tono perspicaz..."):
                         vetting = f"Evalúa la intención: '{r_intent}'. Responde JSON con 'aprobado': true/false."
-                        res = client.models.generate_content(model="gemini-3.8 Flash", contents=vetting, config=types.GenerateContentConfig(response_mime_type="application/json"))
+                        res = client.models.generate_content(model="gemini-3.5-flash-lite", contents=vetting, config=types.GenerateContentConfig(response_mime_type="application/json"))
                         v = json.loads(res.text)
                         if v.get("aprobado", True):
                             now_s = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -808,7 +808,7 @@ with col_insight:
                 <span class="nexus-badge badge-green">⚖️ Equilibrio & Bienestar Diario</span>
                 <small style="color: #64748B;">{st.session_state.evaluation_date}</small>
             </div>
-            <p style="font-size: 0.95rem; line-height: Gemini 3.8 Flash; margin: 0; color: #CBD5E1; font-style: italic;">
+            <p style="font-size: 0.95rem; line-height: gemini-3.5-flash-lite; margin: 0; color: #CBD5E1; font-style: italic;">
                 "{insight.get('consejo_bienestar')}"
             </p>
         </div>
@@ -955,7 +955,7 @@ with tab_chat_ia:
             """
             
             resp = client.models.generate_content(
-                model="gemini-3.8 Flash", 
+                model="gemini-3.5-flash-lite", 
                 contents=query_to_process, 
                 config=types.GenerateContentConfig(system_instruction=consejero_master_system_prompt)
             )
@@ -1006,7 +1006,7 @@ with tab_report:
     if st.button("⚡ Compilar Reporte Completo desde SQLite", type="primary"):
         with st.spinner("Compilando auditoría formal directamente con Gemini..."):
             rep_prompt = f"Genera un reporte 360° en Markdown analizando con profundidad, sabiduría y apoyo el perfil de {st.session_state.auth_user}: {json.dumps(current_profile, ensure_ascii=False)}."
-            res = client.models.generate_content(model="gemini-3.8 Flash", contents=rep_prompt)
+            res = client.models.generate_content(model="gemini-3.5-flash-lite", contents=rep_prompt)
             st.download_button("📥 Descargar Reporte (.md)", data=res.text, file_name=f"Reporte_{st.session_state.auth_user}.md", mime="text/markdown")
             st.markdown(f'<div class="nexus-card">{res.text}</div>', unsafe_allow_html=True)
 
