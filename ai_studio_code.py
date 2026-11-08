@@ -10,6 +10,7 @@ import os
 import base64
 import pandas as pd
 from datetime import datetime
+from google.genai import types
 
 
 OFFICIAL_SUPPORT_EMAIL = "conilnessu@gmail.com"
