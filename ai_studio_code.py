@@ -3,8 +3,8 @@ import json
 from datetime import datetime, time
 import re
 import urllib.parse
-import google.generativeai as genai
-from google.generativeai import types
+from  google import genai
+client = genai.Client()
 import sqlite3
 import os
 import base64
